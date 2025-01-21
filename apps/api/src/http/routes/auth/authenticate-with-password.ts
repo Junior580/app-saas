@@ -1,4 +1,3 @@
-import fastifyJwt from '@fastify/jwt'
 import { compare } from 'bcryptjs'
 import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
@@ -17,6 +16,14 @@ export async function authenticateWithPassword(app: FastifyInstance) {
           email: z.string().email(),
           password: z.string(),
         }),
+        response: {
+          400: z.object({
+            message: z.string(),
+          }),
+          201: z.object({
+            token: z.string(),
+          }),
+        },
       },
     },
     async (request, reply) => {
@@ -27,13 +34,13 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       })
 
       if (!userFromEmail) {
-        return reply.status(400).send({ messagem: 'Invalid credentials' })
+        return reply.status(400).send({ message: 'Invalid credentials' })
       }
 
       if (userFromEmail.passwordHash == null) {
         return reply
           .status(400)
-          .send({ messagem: 'User does not have a password, use social login' })
+          .send({ message: 'User does not have a password, use social login' })
       }
 
       const isPasswordValid = await compare(
@@ -42,7 +49,7 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       )
 
       if (!isPasswordValid) {
-        return reply.status(400).send({ messagem: 'Invalid credentials' })
+        return reply.status(400).send({ message: 'Invalid credentials' })
       }
 
       const token = await reply.jwtSign(
