@@ -18,6 +18,12 @@ export const getProfile = fastifyPlugin(async (app: FastifyInstance) => {
         schema: {
           tags: ['Auth'],
           summary: 'Get authenticated user profile',
+          security: [
+            {
+              bearerAuth: [],
+            },
+          ],
+
           response: {
             400: z.string(),
             200: z.object({
