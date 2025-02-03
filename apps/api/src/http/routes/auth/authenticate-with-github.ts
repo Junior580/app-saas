@@ -69,9 +69,9 @@ export async function authenticateWithGithub(app: FastifyInstance) {
 
       const {
         id: githubId,
-        avatar_url: avatarUrl,
         name,
         email,
+        avatar_url: avatarUrl,
       } = z
         .object({
           id: z.number().int().transform(String),
@@ -129,7 +129,6 @@ export async function authenticateWithGithub(app: FastifyInstance) {
             },
           },
         )
-
         return reply.status(201).send({ token })
       }
     },
