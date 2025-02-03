@@ -99,38 +99,38 @@ export async function authenticateWithGithub(app: FastifyInstance) {
             avatarUrl,
           },
         })
+      }
 
-        let account = await prisma.account.findUnique({
-          where: {
-            provider_userId: {
-              provider: 'GITHUB',
-              userId: user.id,
-            },
+      let account = await prisma.account.findUnique({
+        where: {
+          provider_userId: {
+            provider: 'GITHUB',
+            userId: user.id,
+          },
+        },
+      })
+
+      if (!account) {
+        account = await prisma.account.create({
+          data: {
+            provider: 'GITHUB',
+            providerAccountId: githubId,
+            userId: user.id,
           },
         })
-
-        if (!account) {
-          account = await prisma.account.create({
-            data: {
-              provider: 'GITHUB',
-              providerAccountId: githubId,
-              userId: user.id,
-            },
-          })
-        }
-
-        const token = await reply.jwtSign(
-          {
-            sub: user.id,
-          },
-          {
-            sign: {
-              expiresIn: '7d',
-            },
-          },
-        )
-        return reply.status(201).send({ token })
       }
+
+      const token = await reply.jwtSign(
+        {
+          sub: user.id,
+        },
+        {
+          sign: {
+            expiresIn: '7d',
+          },
+        },
+      )
+      return reply.status(201).send({ token })
     },
   )
 }
