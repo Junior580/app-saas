@@ -19,7 +19,7 @@ export * from './models/project'
 export * from './models/user'
 export * from './roles'
 
-const appAbilities = z.union([
+const appAbilitiesSchema = z.union([
   projectSubject,
   userSubject,
   organizationSubject,
@@ -28,7 +28,7 @@ const appAbilities = z.union([
   z.tuple([z.literal('manage'), z.literal('all')]),
 ])
 
-type AppAbilities = z.infer<typeof appAbilities>
+type AppAbilities = z.infer<typeof appAbilitiesSchema>
 
 export type AppAbility = MongoAbility<AppAbilities>
 export const createAppAbility = createMongoAbility as CreateAbility<AppAbility>
@@ -43,10 +43,13 @@ export function defineAbilityFor(user: User) {
   permissions[user.role](user, builder)
 
   const ability = builder.build({
-    detectSubjectType(suject) {
-      return suject.__typename
+    detectSubjectType(subject) {
+      return subject.__typename
     },
   })
+
+  ability.can = ability.can.bind(ability)
+  ability.cannot = ability.cannot.bind(ability)
 
   return ability
 }
