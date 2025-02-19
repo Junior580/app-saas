@@ -1,13 +1,14 @@
 {
   "name": "@saas/prettier",
   "version": "0.0.0",
-  "main": "index.mjs",
+  "type": "commonjs",
+  "main": "index.js",
   "private": true,
   "devDependencies": {
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.6.10"
   },
-    "eslintConfig": {
+  "eslintConfig": {
     "extends": [
       "@saas/eslint-config/library"
     ]
