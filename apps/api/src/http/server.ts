@@ -19,6 +19,7 @@ import { requestPasswordRecover } from './routes/auth/request-password-recover'
 import { resetPassword } from './routes/auth/reset-password'
 import { errorHandler } from './routes/error-handler'
 import { getMembers } from './routes/members/get-members'
+import { updateMembers } from './routes/members/update-member'
 import { createOrganization } from './routes/orgs/create-organization'
 import { getMembership } from './routes/orgs/get-membership'
 import { getOrganization } from './routes/orgs/get-organization'
@@ -91,6 +92,7 @@ app.register(updateProject)
 app.register(deleteProject)
 
 app.register(getMembers)
+app.register(updateMembers)
 
 app.listen({ port: env.PORT }).then(() => {
   console.log('HTTP server running!')
