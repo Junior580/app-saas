@@ -31,7 +31,7 @@ export const getProfile = fastifyPlugin(async (app: FastifyInstance) => {
                 id: z.string().uuid(),
                 name: z.string().nullable(),
                 email: z.string().email(),
-                avatarUrl: z.string().nullable(),
+                avatarUrl: z.string().url().nullable(),
               }),
             }),
           },

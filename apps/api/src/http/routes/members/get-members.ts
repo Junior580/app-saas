@@ -7,7 +7,6 @@ import { auth } from '@/http/middlewares/auth'
 import { getUserPermissions } from '@/http/utils/get-user-permissions'
 import { prisma } from '@/lib/prisma'
 
-import { BadRequestError } from '../auth/_errors/bad-request-error'
 import { UnauthorizedError } from '../auth/_errors/unauthorized-error'
 
 export async function getMembers(app: FastifyInstance) {
@@ -32,7 +31,7 @@ export async function getMembers(app: FastifyInstance) {
                   userId: z.string().uuid(),
                   role: roleSchema,
                   name: z.string().nullable(),
-                  avatarUrl: z.string().nullable(),
+                  avatarUrl: z.string().url().nullable(),
                   email: z.string().email(),
                 }),
               ),
