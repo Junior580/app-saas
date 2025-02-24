@@ -30,6 +30,10 @@ export function useFormState(
     startTransition(async () => {
       const state = await action(data)
 
+      if (state.success && onSuccess) {
+        await onSuccess()
+      }
+
       setFormState(state)
     })
   }
