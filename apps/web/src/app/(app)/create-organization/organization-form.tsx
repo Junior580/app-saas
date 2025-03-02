@@ -16,8 +16,6 @@ export function OrganizationForm() {
     createOrganizationAction,
   )
 
-  console.log(`🔥 ~ success: ${JSON.stringify(success)}`)
-  console.log(`🔥 ~ message: ${message}`)
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {success === false && message && (
@@ -31,7 +29,7 @@ export function OrganizationForm() {
       )}
 
       {success === true && message && (
-        <Alert>
+        <Alert variant="success">
           <AlertTriangle className="size-4" />
           <AlertTitle>Success!</AlertTitle>
           <AlertDescription>
