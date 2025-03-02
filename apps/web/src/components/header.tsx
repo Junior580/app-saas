@@ -6,6 +6,8 @@ import { ability } from '@/auth/auth'
 
 import { OrganizationSwitcher } from './organization-switcher'
 import { ProfileButton } from './profile-button'
+import { ThemeSwitcher } from './theme/theme-switcher'
+import { Separator } from './ui/separator'
 
 export default async function Header() {
   const permissions = await ability()
@@ -15,7 +17,7 @@ export default async function Header() {
       <div className="flex items-center gap-3">
         <Image
           src={rocketseatIcon}
-          className="size-6 invert"
+          className="size-6 dark:invert"
           alt="rocketseatIcon"
         />
 
@@ -27,6 +29,10 @@ export default async function Header() {
       </div>
 
       <div className="flex items-center gap-4">
+        <ThemeSwitcher />
+
+        <Separator orientation="vertical" className="h-5" />
+
         <ProfileButton />
       </div>
     </div>
