@@ -12,7 +12,7 @@ export async function isAuthenticated() {
 
 export default async function getCurrentOrg() {
   const cookieStore = await cookies()
-  return cookieStore.get('org')?.value || null
+  return cookieStore.get('org')?.value ?? null
 }
 
 export async function getCurrentMembership() {
