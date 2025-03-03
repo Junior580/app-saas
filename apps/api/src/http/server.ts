@@ -17,6 +17,7 @@ import { createAccount } from './routes/auth/create-account'
 import { getProfile } from './routes/auth/get-profile'
 import { requestPasswordRecover } from './routes/auth/request-password-recover'
 import { resetPassword } from './routes/auth/reset-password'
+import { getOrganizationBilling } from './routes/billing/get-organization-billing'
 import { errorHandler } from './routes/error-handler'
 import { acceptInvite } from './routes/invites/accept-invite'
 import { createInvite } from './routes/invites/create-invite'
@@ -94,6 +95,7 @@ app.register(getOrganizations)
 app.register(updateOrganization)
 app.register(shutdownOrganization)
 app.register(transferOrganization)
+app.register(getOrganizationBilling)
 
 app.register(createProject)
 app.register(getProjects)
