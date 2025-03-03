@@ -12,6 +12,8 @@ export async function Tabs() {
 
   const canGetMembers = permissions?.can('get', 'User')
   const canGetProjects = permissions?.can('get', 'Project')
+  console.log(`🔥 ~ role-canUpdateOrganization: ${canUpdateOrganization}`)
+  console.log(`🔥 ~ role-canGetbilling: ${canGetbilling}`)
 
   return (
     <div className="border-b py-4">
@@ -38,19 +40,18 @@ export async function Tabs() {
           </Button>
         )}
 
-        {canUpdateOrganization ||
-          (canGetbilling && (
-            <Button
-              variant="ghost"
-              size="sm"
-              className="border border-transparent text-muted-foreground data-[current=true]:border-border data-[current=true]:text-foreground"
-              asChild
-            >
-              <NavLink href={`/org/${currentOrg}/settings`}>
-                Settings & Billings
-              </NavLink>
-            </Button>
-          ))}
+        {(canUpdateOrganization || canGetbilling) && (
+          <Button
+            variant="ghost"
+            size="sm"
+            className="border border-transparent text-muted-foreground data-[current=true]:border-border data-[current=true]:text-foreground"
+            asChild
+          >
+            <NavLink href={`/org/${currentOrg}/settings`}>
+              Settings & Billings
+            </NavLink>
+          </Button>
+        )}
       </nav>
     </div>
   )
