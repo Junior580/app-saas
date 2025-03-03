@@ -12,8 +12,6 @@ export async function Tabs() {
 
   const canGetMembers = permissions?.can('get', 'User')
   const canGetProjects = permissions?.can('get', 'Project')
-  console.log(`🔥 ~ role-canUpdateOrganization: ${canUpdateOrganization}`)
-  console.log(`🔥 ~ role-canGetbilling: ${canGetbilling}`)
 
   return (
     <div className="border-b py-4">
