@@ -78,7 +78,7 @@ export async function createOrganizationAction(data: FormData) {
       return { success: false, message, errors: null }
     }
 
-    console.error(err)
+    console.error(`🔥 ~ error ${JSON.stringify(err)}`)
 
     return {
       success: false,
@@ -125,7 +125,7 @@ export async function updateOrganizationAction(data: FormData) {
       return { success: false, message, errors: null }
     }
 
-    console.error(err)
+    console.error(`🔥 ~ error ${JSON.stringify(err)}`)
 
     return {
       success: false,

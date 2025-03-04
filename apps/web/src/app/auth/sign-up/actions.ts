@@ -47,7 +47,7 @@ export async function signUpAction(data: FormData) {
       return { success: false, message, errors: null }
     }
 
-    console.error(err)
+    console.error(`🔥 RevokeInvite error ${JSON.stringify(err)}`)
 
     return {
       success: false,

@@ -54,7 +54,7 @@ export async function signInWithEmailAndPassword(data: FormData) {
       return { success: false, message, errors: null }
     }
 
-    console.error(err)
+    console.error(`🔥 ~ error ${JSON.stringify(err)}`)
 
     return {
       success: false,
