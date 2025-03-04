@@ -4,7 +4,8 @@ import { env } from '@saas/env'
 import { redirect } from 'next/navigation'
 
 export async function signInWithGithub() {
-  const githubSignInURL = new URL('login/oauth/authorize', 'https://github.com')
+  // const githubSignInURL = new URL('login/oauth/authorize', 'https://github.com')
+  const githubSignInURL = new URL('https://github.com/login/oauth/authorize')
 
   githubSignInURL.searchParams.set('client_id', env.GITHUB_OAUTH_CLIENT_ID)
   githubSignInURL.searchParams.set(
