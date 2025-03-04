@@ -18,8 +18,12 @@ type InvitePageProps = Promise<{
   id: string
 }>
 
-export default async function InvitePage(props: { params: InvitePageProps }) {
-  const inviteId = (await props.params).id
+export default async function InvitePage({
+  params,
+}: {
+  params: InvitePageProps
+}) {
+  const inviteId = (await params).id
 
   const { invite } = await getInvite(inviteId)
   const isUserAuthenticated = await isAuthenticated()
