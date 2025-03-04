@@ -45,7 +45,7 @@ export async function signInWithEmailAndPassword(data: FormData) {
       try {
         await acceptInvite(inviteId)
         cookieStore.delete('inviteId')
-      } catch {}
+      } catch { }
     }
   } catch (err) {
     if (err instanceof HTTPError) {
@@ -54,7 +54,7 @@ export async function signInWithEmailAndPassword(data: FormData) {
       return { success: false, message, errors: null }
     }
 
-    console.error(`🔥 ~ error ${JSON.stringify(err)}`)
+    console.error(err)
 
     return {
       success: false,

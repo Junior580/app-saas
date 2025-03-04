@@ -39,7 +39,7 @@ export async function createProjectAction(data: FormData) {
       return { success: false, message, errors: null }
     }
 
-    console.error(`🔥 ~ error ${JSON.stringify(err)}`)
+    console.error(err)
 
     return {
       success: false,
