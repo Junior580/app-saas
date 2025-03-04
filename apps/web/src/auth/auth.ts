@@ -55,7 +55,7 @@ export async function auth() {
 
     return { user }
   } catch (err) {
-    console.log(` 🚀~  err: ${JSON.stringify(err)}`)
+    console.log(`🚀 ~  err: ${JSON.stringify(err)}`)
   }
 
   redirect('/api/auth/sign-out')

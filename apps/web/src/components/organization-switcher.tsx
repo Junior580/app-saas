@@ -18,7 +18,6 @@ import {
 export async function OrganizationSwitcher() {
   const currentOrg = await getCurrentOrg()
   const { organizations } = await getOrganizations()
-  console.log(`🔥 ~ organizations: ${JSON.stringify(organizations)}`)
 
   const currentOrganization = organizations.find(
     (org) => org.slug === currentOrg,
