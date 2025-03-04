@@ -2,9 +2,8 @@ import { api } from './api-client'
 
 interface GetOrganizationsResponse {
   organizations: {
-    email: string
-    name: string
     id: string
+    name: string
     slug: string
     avatarUrl: string | null
   }[]

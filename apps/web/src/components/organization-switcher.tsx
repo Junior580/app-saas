@@ -16,8 +16,10 @@ import {
 } from './ui/dropdown-menu'
 
 export async function OrganizationSwitcher() {
-  const currentOrg = await getCurrentOrg()
-  const { organizations } = await getOrganizations()
+  const [currentOrg, { organizations }] = await Promise.all([
+    getCurrentOrg(),
+    getOrganizations(),
+  ])
 
   const currentOrganization = organizations.find(
     (org) => org.slug === currentOrg,
