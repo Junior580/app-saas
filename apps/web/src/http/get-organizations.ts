@@ -10,6 +10,7 @@ interface GetOrganizationsResponse {
 }
 
 export async function getOrganizations() {
+  console.log(`🔥 ~ getOrganizations called`)
   const result = await api.get('organizations').json<GetOrganizationsResponse>()
 
   return result
