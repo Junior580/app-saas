@@ -1,3 +1,36 @@
+## Development Setup
+
+Follow these steps to run the project locally:
+
+1. **Configure environment variables**  
+   Copy the `.env.example` file and adjust the values as needed:
+
+   ```bash
+   cp .env.example .env
+   # then edit .env with your preferred values
+   ```
+
+2. **Generate Prisma client**
+   Navigate to the API folder and generate the Prisma client:
+
+   ```
+    cd apps/api && npx prisma generate
+   ```
+
+3. **Seed the database**  
+   Still in the apps/api/ folder, load environment variables and run the Prisma seed:
+
+   ```
+   npm run env:load -- npx prisma db seed
+   ```
+
+4. **Start the development server**  
+   Run the API and web apps as usual (example using npm):
+
+   ```
+   pnpm run dev
+   ```
+
 # Next.js SaaS + RBAC
 
 This project contains all the necessary boilerplate to setup a multi-tenant SaaS with Next.js including authentication and RBAC authorization.
@@ -55,22 +88,22 @@ Roles & permissions.
 
 ### Permissions table
 
-|                          | Administrator | Member | Billing | Anonymous |
-| ------------------------ | ------------- | ------ | ------- | --------- |
-| Update organization      | ✅            | ❌     | ❌      | ❌        |
-| Delete organization      | ✅            | ❌     | ❌      | ❌        |
-| Invite a member          | ✅            | ❌     | ❌      | ❌        |
-| Revoke an invite         | ✅            | ❌     | ❌      | ❌        |
-| List members             | ✅            | ✅     | ✅      | ❌        |
-| Transfer ownership       | ⚠️            | ❌     | ❌      | ❌        |
-| Update member role       | ✅            | ❌     | ❌      | ❌        |
-| Delete member            | ✅            | ⚠️     | ❌      | ❌        |
-| List projects            | ✅            | ✅     | ✅      | ❌        |
-| Create a new project     | ✅            | ✅     | ❌      | ❌        |
-| Update a project         | ✅            | ⚠️     | ❌      | ❌        |
-| Delete a project         | ✅            | ⚠️     | ❌      | ❌        |
-| Get billing details      | ✅            | ❌     | ✅      | ❌        |
-| Export billing details   | ✅            | ❌     | ✅      | ❌        |
+|                        | Administrator | Member | Billing | Anonymous |
+| ---------------------- | ------------- | ------ | ------- | --------- |
+| Update organization    | ✅            | ❌     | ❌      | ❌        |
+| Delete organization    | ✅            | ❌     | ❌      | ❌        |
+| Invite a member        | ✅            | ❌     | ❌      | ❌        |
+| Revoke an invite       | ✅            | ❌     | ❌      | ❌        |
+| List members           | ✅            | ✅     | ✅      | ❌        |
+| Transfer ownership     | ⚠️            | ❌     | ❌      | ❌        |
+| Update member role     | ✅            | ❌     | ❌      | ❌        |
+| Delete member          | ✅            | ⚠️     | ❌      | ❌        |
+| List projects          | ✅            | ✅     | ✅      | ❌        |
+| Create a new project   | ✅            | ✅     | ❌      | ❌        |
+| Update a project       | ✅            | ⚠️     | ❌      | ❌        |
+| Delete a project       | ✅            | ⚠️     | ❌      | ❌        |
+| Get billing details    | ✅            | ❌     | ✅      | ❌        |
+| Export billing details | ✅            | ❌     | ✅      | ❌        |
 
 > ✅ = allowed
 > ❌ = not allowed
@@ -81,4 +114,3 @@ Roles & permissions.
 - Only owners may transfer organization ownership;
 - Only administrators and project authors may update/delete the project;
 - Members can leave their own organization;
-
